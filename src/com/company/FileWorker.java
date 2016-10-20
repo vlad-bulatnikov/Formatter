@@ -38,7 +38,6 @@ public class FileWorker {
                 file.createNewFile();
             }
             PrintWriter out = new PrintWriter(file.getAbsoluteFile());
-            System.out.println(textFromFile);
             String space = "";
             boolean check = false;
             for (int i = 0; i < textFromFile.length(); i++) {
@@ -46,7 +45,7 @@ public class FileWorker {
                 if (symbol.equals(";")) {
                     check = true;
                     out.println(symbol);
-                    out.print(space);
+                    //out.print(space);
                 }else {
                 if (symbol.equals("{")) {
                     if(textFromFile.substring(i-1, i).equals(" ")) {
@@ -63,7 +62,7 @@ public class FileWorker {
                     if (symbol.equals("}")) {
                         if (check) {
                             space = space.substring(0, space.length() - 4);
-                            //out.print(space);
+                            out.print(space);
                             out.print(symbol);
                             check=false;
                         } else {
@@ -73,7 +72,18 @@ public class FileWorker {
                             out.print(symbol);
                         }
                     } else {
-                        out.print(symbol);
+                        if(check && !symbol.equals(" ")) {
+                            check=false;
+                            out.print(space);
+                            out.print(symbol);
+                        } else {
+                            if (check && symbol.equals(" ")) {
+                                continue;
+                            }else {
+                                out.print(symbol);
+                            }
+                        }
+
                     }
                 }
             }

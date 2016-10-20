@@ -13,7 +13,6 @@ public class Main {
     public static void main(String[] args) {
         try {
             String textFromFile = FileWorker.read(fileName);
-            System.out.println(textFromFile);
             FileWorker.formatter(textFromFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
