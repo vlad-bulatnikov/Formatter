@@ -32,7 +32,7 @@ public final class FileWorker {
                 String s;
                 while ((s = in.readLine()) != null) {
                     sb.append(s);
-                    sb.append("\n");
+                    //sb.append("\n");
                 }
             } finally {
                 in.close();
