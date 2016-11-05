@@ -6,10 +6,13 @@ import java.io.FileNotFoundException;
  * Simplest Main implementation
  */
 public final class Main {
-
+    /**
+     * constructor
+     */
     private Main() {
     }
     private static String fileName = "./input";
+    private static String fileNameOut = "./output";
 
     /**
      * Entry method
@@ -17,11 +20,15 @@ public final class Main {
      */
     public static void main(final String[] args) {
         try {
-            String textFromFile = FileWorker.read(fileName);
-            FileWorker.formatter(textFromFile);
+            FileWorker reader = new FileWorker();
+            FileWorker format = new FileWorker();
+            String textFromFile = reader.read(fileName);
+            format.formatter(textFromFile, fileNameOut);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
     }
+
+
 }

@@ -10,9 +10,11 @@ import java.io.PrintWriter;
 /**
  * Simplest FileWorker implementation
  */
-public final class FileWorker {
-
-    private FileWorker() {
+public final class FileWorker implements IReader, IFormatter {
+    /**
+     * constructor
+     */
+    FileWorker() {
     }
 
     /**
@@ -21,7 +23,7 @@ public final class FileWorker {
      * @return  String
      * @throws FileNotFoundException throws
      */
-    public static String read(final String fileName) throws FileNotFoundException {
+    public String read(final String fileName) throws FileNotFoundException {
 
         StringBuilder sb = new StringBuilder();
         exists(fileName);
@@ -32,7 +34,7 @@ public final class FileWorker {
                 String s;
                 while ((s = in.readLine()) != null) {
                     sb.append(s);
-                    //sb.append("\n");
+                    sb.append("\n");
                 }
             } finally {
                 in.close();
@@ -46,13 +48,14 @@ public final class FileWorker {
     /**
      *
      * @param textFromFile formatted text
+     * @param fileNameOut name out file
      * @throws FileNotFoundException throws
      */
-    public static void formatter(final String textFromFile) throws FileNotFoundException {
+    public void formatter(final String textFromFile, final String fileNameOut) throws FileNotFoundException {
 
         final int fourSpace = 4;
 
-        File file = new File("output");
+        File file = new File(fileNameOut);
 
         try {
             if (!file.exists()) {

@@ -1,0 +1,6 @@
+formatter() {
+    int c;
+    for() {
+        int a;
+    } 
+}
